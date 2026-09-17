@@ -12,15 +12,15 @@ import {
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { v4 as uuid } from "uuid";
 import Task from "./Task";
 import { Grid } from "@mui/system";
 import { TasksContext } from "../contexts/TasksContext";
-import { SnackbarContext } from "../contexts/SnackbarContext";
+import { useSnack } from "../contexts/SnackbarContext";
 
 export default function TaskList() {
-  const { handleShowHideBar } = useContext(SnackbarContext);
+  const { handleShowHideBar } = useSnack();
   const taskArray = [
     {
       id: uuid(),

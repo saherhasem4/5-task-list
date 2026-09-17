@@ -1,9 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import MySnackbar from "../components/MySnackbar";
 
-export const SnackbarContext = createContext({});
+const SnackbarContext = createContext({});
 
-export const SnackbarProvider = ({ Children }) => {
+export const SnackbarProvider = ({ children }) => {
   const [showHideBar, setShowHideBar] = useState(false);
   const [msg, setMsg] = useState("");
   function handleShowHideBar(msg) {
@@ -16,7 +16,11 @@ export const SnackbarProvider = ({ Children }) => {
   return (
     <SnackbarContext.Provider value={{ handleShowHideBar }}>
       <MySnackbar showHideBar={showHideBar} msg={msg} />
-      {Children}
+      {children}
     </SnackbarContext.Provider>
   );
+};
+
+export const useSnack = function () {
+  return useContext(SnackbarContext);
 };
